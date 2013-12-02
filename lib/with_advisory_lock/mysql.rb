@@ -15,7 +15,7 @@ module WithAdvisoryLock
       # previously locked the name), or NULL if an error occurred
       # (such as running out of memory or the thread was killed with mysqladmin kill).
       # The timestamp prevents AR from caching the result improperly, and is ignored.
-      sql = "SELECT GET_LOCK(#{quoted_lock_name}, 0), #{Time.now.to_f}"
+      sql = "SELECT GET_LOCK(#{quoted_lock_name}, #{timeout_seconds}), #{Time.now.to_f}"
       1 == connection.select_value(sql).to_i
     end
 
