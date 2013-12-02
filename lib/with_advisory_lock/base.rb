@@ -67,5 +67,9 @@ module WithAdvisoryLock
       end
       false # failed to get lock in time.
     end
+    
+    def timeout_seconds
+      @timeout_seconds || 0
+    end
   end
 end
